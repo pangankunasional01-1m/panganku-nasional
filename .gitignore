@@ -1,0 +1,48 @@
+# Flutter/Dart/Pub
+.dart_tool/
+.packages
+build/
+*.dart_tool/
+pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Android
+local.properties
+*.jks
+*.keystore
+android/app/src/debug
+android/app/src/profile
+android/app/src/main/assets
+*.apk
+*.aab
+
+# iOS
+ios/Flutter/
+ios/.generated/
+ios/Pods/
+*.xcworkspace
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Web
+web/.dart_tool/
+web/build/
+
+# Logs
+*.log
+
+# Misc
+*.orig
+migrations/
