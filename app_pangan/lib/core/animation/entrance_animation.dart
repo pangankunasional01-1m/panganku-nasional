@@ -23,7 +23,7 @@ class EntranceAnimation extends StatefulWidget {
   const EntranceAnimation({
     super.key,
     required this.child,
-    this.duration = const Duration(milliseconds: 650),
+    this.duration = const Duration(milliseconds: 400),
     this.delay,
     this.curve = Curves.easeOutCubic,
     this.offset = const Offset(0, 0.14),
@@ -251,7 +251,7 @@ class AnimatedCounter extends StatelessWidget {
       tween: Tween<double>(begin: 0, end: value),
       duration: duration,
       curve: Curves.easeOutCubic,
-      builder: (_, v, __) => Text('$prefix${formatNumber(v)}$suffix', style: style),
+      builder: (_, v, _) => Text('$prefix${formatNumber(v)}$suffix', style: style),
     );
   }
 }
@@ -284,7 +284,7 @@ class _PulseDotState extends State<PulseDot> with SingleTickerProviderStateMixin
       height: s * 2.4,
       child: AnimatedBuilder(
         animation: _c,
-        builder: (_, __) {
+        builder: (_, _) {
           final t = _c.value;
           final ring = s * (1 + 1.4 * t);
           return Stack(
@@ -367,7 +367,7 @@ class _WaveformState extends State<Waveform> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: _c,
-      builder: (_, __) => Row(
+      builder: (_, _) => Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: List.generate(5, (i) {

@@ -591,7 +591,7 @@ class _ProfitHero extends StatelessWidget {
               tween: Tween(begin: 0, end: 1),
               duration: const Duration(milliseconds: 1300),
               curve: Curves.easeOutCubic,
-              builder: (_, t, __) => LineChart(
+              builder: (_, t, _) => LineChart(
                 LineChartData(
                   minY: 0,
                   maxY: 5,

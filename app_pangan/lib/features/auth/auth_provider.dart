@@ -3,7 +3,16 @@ import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum UserRole { petani, konsumen, admin }
+enum UserRole {
+  konsumen,
+  petani,
+  peternak,
+  nelayan,
+  pelakuPangan,
+  pengepul,
+  olahan,
+  admin,
+}
 
 class AppUser {
   final String name;
@@ -17,9 +26,21 @@ class AppUser {
   });
 
   String get roleLabel => switch (role) {
-    UserRole.petani => 'Petani',
     UserRole.konsumen => 'Konsumen',
+    UserRole.petani => 'Petani',
+    UserRole.peternak => 'Peternak',
+    UserRole.nelayan => 'Nelayan',
+    UserRole.pelakuPangan => 'Pelaku Pangan',
+    UserRole.pengepul => 'Pengepul',
+    UserRole.olahan => 'Pengolah',
     UserRole.admin => 'Admin',
+  };
+
+  // Cek apakah role adalah produser (bukan konsumen/admin)
+  bool get isProducer => switch (role) {
+    UserRole.petani || UserRole.peternak || UserRole.nelayan ||
+    UserRole.pelakuPangan || UserRole.pengepul || UserRole.olahan => true,
+    UserRole.konsumen || UserRole.admin => false,
   };
 }
 
@@ -56,11 +77,17 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   // Akun demo lokal (mock, siap diganti API).
   static final Map<String, _Account> _accounts = {
-    '08123456789': _Account(
-      name: 'Bapak Sugianto',
-      identifier: '08123456789',
-      password: 'petani123',
-      role: UserRole.petani,
+    '08111222333': _Account(
+      name: 'Ibu Siti Konsumen',
+      identifier: '08111222333',
+      password: 'konsumen123',
+      role: UserRole.konsumen,
+    ),
+    'admin': _Account(
+      name: 'Administrator',
+      identifier: 'admin',
+      password: 'admin123',
+      role: UserRole.admin,
     ),
   };
 
@@ -73,7 +100,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
         final roleName = m['role'] as String?;
         final role = UserRole.values.firstWhere(
           (r) => r.name == roleName,
-          orElse: () => UserRole.petani,
+          orElse: () => UserRole.konsumen,
         );
         state = AuthState(
           user: AppUser(

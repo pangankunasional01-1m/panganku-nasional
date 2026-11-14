@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'core/core.dart';
+import 'core/providers/gemini_provider.dart';
 import 'features/features.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await dotenv.load(fileName: '.env');
+  } catch (_) {
+    // .env belum tersedia (salin dari .env.example) — lanjutkan tanpa env
+  }
   runApp(const ProviderScope(child: PanganKuApp()));
 }
 
@@ -14,13 +21,14 @@ class PanganKuApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(geminiInitializedProvider);
     final auth = ref.watch(authProvider);
     if (auth.isLoading) {
       return MaterialApp(
         title: 'PanganKu Nasional',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme(context),
-        home: const _SplashGate(),
+        home: const PatternBackground(child: _SplashGate()),
       );
     }
     return MaterialApp(
@@ -29,25 +37,30 @@ class PanganKuApp extends ConsumerWidget {
       theme: AppTheme.lightTheme(context),
       home: auth.isAuthenticated
           ? _homeForRole(auth.user!.role)
-          : const LoginScreen(),
+          : const PatternBackground(child: LoginScreen()),
       onGenerateRoute: (settings) {
         if (!auth.isAuthenticated &&
             settings.name != '/login' &&
             settings.name != '/register') {
           return MaterialPageRoute<void>(
             settings: settings,
-            builder: (_) => const LoginScreen(),
+            builder: (_) => const PatternBackground(child: LoginScreen()),
           );
         }
         final Widget? page = switch (settings.name) {
-          '/login' => const LoginScreen(),
-          '/register' => const RegisterScreen(),
+          '/login' => const PatternBackground(child: LoginScreen()),
+          '/register' => const PatternBackground(child: RegisterScreen()),
           '/' => const MainNavScreen(),
+          '/menu-all' => const MainNavScreen(),
           '/finance' => const FinanceScreen(),
           '/production' => const ProductionScreen(),
           '/harvest' => const ProductionScreen(initialSector: ProductionSector.darat),
           '/sell' => const SellScreen(),
           '/settings' => const SettingsScreen(),
+          '/guide' => const PlantingGuideScreen(),
+          '/report' => const ReportScreen(),
+          '/market' => const MarketScreen(),
+          '/notifications' => const NotificationsScreen(),
           '/consumer' => const ConsumerHome(),
           '/admin' => const AdminDashboard(),
           _ => null,
@@ -69,7 +82,7 @@ class _SplashGate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.bgCream,
+      backgroundColor: Colors.transparent,
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -103,8 +116,13 @@ class _SplashGate extends StatelessWidget {
   }
 }
 
-  Widget _homeForRole(UserRole role) => switch (role) {
-    UserRole.petani => const MainNavScreen(),
-    UserRole.konsumen => const ConsumerHome(),
-    UserRole.admin => const AdminDashboard(),
-  };
+Widget _homeForRole(UserRole role) => switch (role) {
+  UserRole.konsumen => const ConsumerHome(),
+  UserRole.petani => const MainNavScreen(),
+  UserRole.peternak => const MainNavScreen(),
+  UserRole.nelayan => const MainNavScreen(),
+  UserRole.pelakuPangan => const MainNavScreen(),
+  UserRole.pengepul => const MainNavScreen(),
+  UserRole.olahan => const MainNavScreen(),
+  UserRole.admin => const AdminDashboard(),
+};

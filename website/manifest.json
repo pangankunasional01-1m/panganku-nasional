@@ -1,0 +1,111 @@
+{
+  "name": "PanganKu Nasional",
+  "short_name": "PanganKu",
+  "description": "Ekosistem Intelijen Pangan untuk petani, konsumen, dan pemerintah Indonesia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBF7EF",
+  "theme_color": "#2E7D32",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "id",
+  "categories": ["agriculture", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "assets/images/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Harga Komoditas",
+      "short_name": "Harga",
+      "description": "Lihat harga komoditas real-time",
+      "url": "/#features",
+      "icons": [{ "src": "assets/images/shortcut-price.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Pasar Terdekat",
+      "short_name": "Pasar",
+      "description": "Cari pasar dan toko terdekat",
+      "url": "/#features",
+      "icons": [{ "src": "assets/images/shortcut-market.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Pantauan Harga",
+      "short_name": "Pantauan",
+      "description": "Kelola alert harga favorit",
+      "url": "/#features",
+      "icons": [{ "src": "assets/images/shortcut-monitoring.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/images/screenshot-home.png",
+      "sizes": "1080x2340",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Beranda aplikasi PanganKu Nasional"
+    },
+    {
+      "src": "assets/images/screenshot-price.png",
+      "sizes": "1080x2340",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Harga komoditas dengan filter dan sparkline"
+    },
+    {
+      "src": "assets/images/screenshot-market.png",
+      "sizes": "1080x2340",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Pasar terdekat dengan search dan filter"
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": []
+}

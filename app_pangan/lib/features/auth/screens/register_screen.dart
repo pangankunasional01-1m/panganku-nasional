@@ -22,7 +22,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   final _confirmCtrl = TextEditingController();
   bool _obscure = true;
   bool _obscureConfirm = true;
-  UserRole _role = UserRole.petani;
 
   @override
   void dispose() {
@@ -34,21 +33,27 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
   }
 
   String _routeFor(UserRole role) => switch (role) {
-    UserRole.petani => '/',
     UserRole.konsumen => '/consumer',
+    UserRole.petani => '/',
+    UserRole.peternak => '/',
+    UserRole.nelayan => '/',
+    UserRole.pelakuPangan => '/',
+    UserRole.pengepul => '/',
+    UserRole.olahan => '/',
     UserRole.admin => '/admin',
   };
 
   Future<void> _submit() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
     FocusScope.of(context).unfocus();
+    const role = UserRole.konsumen; // Default semua user baru = Konsumen
     final err = await ref
         .read(authProvider.notifier)
         .register(
           name: _nameCtrl.text,
           identifier: _idCtrl.text,
           password: _passCtrl.text,
-          role: _role,
+          role: role,
         );
     if (!mounted) return;
     if (err != null) {
@@ -61,7 +66,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       return;
     }
     HapticFeedback.mediumImpact();
-    Navigator.pushNamedAndRemoveUntil(context, _routeFor(_role), (_) => false);
+    Navigator.pushNamedAndRemoveUntil(context, _routeFor(role), (_) => false);
   }
 
   @override
@@ -129,30 +134,6 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                           }
                           return null;
                         },
-                      ),
-                    ),
-                    const SizedBox(height: 14),
-                    EntranceAnimation(
-                      delay: const Delay(160),
-                      child: DropdownButtonFormField<UserRole>(
-                        initialValue: _role,
-                        decoration: const InputDecoration(
-                          labelText: 'Peran',
-                          prefixIcon: Icon(Icons.group_outlined),
-                        ),
-                        items: UserRole.values
-                            .map(
-                              (r) => DropdownMenuItem(
-                                value: r,
-                                child: Text(switch (r) {
-                                  UserRole.petani => 'Petani / Produsen',
-                                  UserRole.konsumen => 'Konsumen',
-                                  UserRole.admin => 'Pemerintah / Admin',
-                                }),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (v) => setState(() => _role = v ?? _role),
                       ),
                     ),
                     const SizedBox(height: 14),

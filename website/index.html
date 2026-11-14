@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PanganKu Nasional - Ekosistem Intelijen Pangan untuk petani, konsumen, dan pemerintah Indonesia. Harga komoditas real-time, pantauan pasar, panduan tanam, dan lebih banyak lagi.">
+    <meta name="theme-color" content="#2E7D32">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://panganku.nasional.go.id/">
+    <meta property="og:title" content="PanganKu Nasional - Intelijen Pangan Indonesia">
+    <meta property="og:description" content="Harga komoditas real-time, pantauan pasar, panduan tanam AI, dan ekosistem lengkap untuk petani Indonesia.">
+    <meta property="og:image" content="assets/images/hero-banner.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://panganku.nasional.go.id/">
+    <meta property="twitter:title" content="PanganKu Nasional - Intelijen Pangan Indonesia">
+    <meta property="twitter:description" content="Harga komoditas real-time, pantauan pasar, panduan tanam AI, dan ekosistem lengkap untuk petani Indonesia.">
+    <meta property="twitter:image" content="assets/images/hero-banner.jpg">
+    
+    <title>PanganKu Nasional - Ekosistem Intelijen Pangan Indonesia</title>
+    
+    <!-- Preconnect for fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main" class="skip-link">Lewati ke konten utama</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Navigasi utama">
+        <div class="container navbar__inner">
+            <a href="#" class="navbar__logo" aria-label="PanganKu Nasional - Beranda">
+                <svg class="navbar__logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="currentColor"/>
+                    <path d="M16 8C11.5817 8 8 11.5817 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 11.5817 20.4183 8 16 8Z" stroke="white" stroke-width="2.5" fill="none"/>
+                    <path d="M16 12V20M12 16H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <span class="navbar__logo-text">PanganKu Nasional</span>
+            </a>
+            
+            <button class="navbar__toggle" aria-expanded="false" aria-controls="navbar-menu" aria-label="Buka menu navigasi">
+                <span class="navbar__toggle-icon" aria-hidden="true"></span>
+            </button>
+            
+            <ul id="navbar-menu" class="navbar__menu" role="menubar">
+                <li role="none"><a href="#features" class="navbar__link" role="menuitem">Fitur</a></li>
+                <li role="none"><a href="#screenshots" class="navbar__link" role="menuitem">Tampilan</a></li>
+                <li role="none"><a href="#users" class="navbar__link" role="menuitem">Pengguna</a></li>
+                <li role="none"><a href="#tech" class="navbar__link" role="menuitem">Teknologi</a></li>
+                <li role="none"><a href="../app_pangan-debug.apk" class="navbar__cta" role="menuitem" download>Unduh Aplikasi</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main id="main" role="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero__inner">
+                <div class="hero__content">
+                    <span class="hero__badge" aria-label="Versi terbaru">v1.0.0 • Terbaru</span>
+                    <h1 id="hero-title" class="hero__title">
+                        Intelijen Pangan Nasional<br>
+                        <span class="hero__title-highlight">di Genggaman Tangan</span>
+                    </h1>
+                    <p class="hero__description">
+                        Harga komoditas real-time, pantauan pasar terdekat, panduan tanam berbasis AI, 
+                        dan catatan keuangan panen — semua dalam satu aplikasi untuk petani Indonesia.
+                    </p>
+                    <div class="hero__actions">
+                        <a href="../app_pangan-debug.apk" class="btn btn--primary btn--lg" download>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            <span>Unduh Aplikasi (APK)</span>
+                        </a>
+                        <a href="#screenshots" class="btn btn--secondary btn--lg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <polygon points="23 7 16 12 23 17 23 7"/>
+                                <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                            </svg>
+                            <span>Lihat Demo</span>
+                        </a>
+                    </div>
+                    <div class="hero__stats">
+                        <div class="hero__stat">
+                            <span class="hero__stat-number">112+</span>
+                            <span class="hero__stat-label">Komoditas</span>
+                        </div>
+                        <div class="hero__stat">
+                            <span class="hero__stat-number">5</span>
+                            <span class="hero__stat-label">Fitur Utama</span>
+                        </div>
+                        <div class="hero__stat">
+                            <span class="hero__stat-number">3</span>
+                            <span class="hero__stat-label">Peran Pengguna</span>
+                        </div>
+                        <div class="hero__stat">
+                            <span class="hero__stat-number">100%</span>
+                            <span class="hero__stat-label">Offline-First</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero__visual" aria-hidden="true">
+                    <div class="phone-mockup">
+                        <div class="phone-mockup__frame">
+                            <div class="phone-mockup__screen">
+                                <img src="assets/images/hero-screen.svg" alt="Tampilan aplikasi PanganKu Nasional" class="phone-mockup__image">
+                            </div>
+                        </div>
+                        <div class="phone-mockup__shadow"></div>
+                    </div>
+                    <div class="hero__badges">
+                        <span class="badge badge--green">Material Design 3</span>
+                        <span class="badge badge--amber">WCAG 2.2 AA</span>
+                        <span class="badge badge--orange">Offline-First</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll indicator -->
+            <a href="#features" class="scroll-indicator" aria-label="Scroll ke fitur">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 5v14M19 12l-7 7-7-7"/>
+                </svg>
+            </a>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="features" aria-labelledby="features-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="features-title" class="section-title">Fitur Unggulan</h2>
+                    <p class="section-description">
+                        Lengkapi kebutuhan pertanian Anda dengan ekosistem terintegrasi
+                    </p>
+                </header>
+                
+                <div class="features__grid">
+                    <!-- Feature 1 -->
+                    <article class="feature-card">
+                        <div class="feature-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10"/>
+                                <line x1="12" y1="20" x2="12" y2="4"/>
+                                <line x1="6" y1="20" x2="6" y2="16"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Harga Komoditas Real-time</h3>
+                        <p class="feature-card__description">
+                            Pantau 112+ komoditas (cabai, bawang, padi, buah, sayur) dengan harga pasar terkini, 
+                            tren 7/30 hari, dan perbandingan antar pasar.
+                        </p>
+                        <ul class="feature-card__highlights">
+                            <li>Filter kategori: Pangan Pokok, Sayuran, Buah, Lainnya</li>
+                            <li>Sparkline trend & badge naik/turun</li>
+                            <li>Sumber: pasar tradisional & modern</li>
+                        </ul>
+                    </article>
+                    
+                    <!-- Feature 2 -->
+                    <article class="feature-card">
+                        <div class="feature-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Pasar Terdekat & Lokasi</h3>
+                        <p class="feature-card__description">
+                            Temukan pasar, toko, dan kolektor terdekat dengan filter radius, kategori, 
+                            dan status buka/tutup. Navigasi satu sentuh ke lokasi.
+                        </p>
+                        <ul class="feature-card__highlights">
+                            <li>Pencarian real-time dengan debounce</li>
+                            <li>Filter: radius 5-50km, kategori, buka sekarang</li>
+                            <li>Urutkan: jarak, rating, jam buka</li>
+                            <li>Detail: kontak, jam, komoditas unggulan</li>
+                        </ul>
+                    </article>
+                    
+                    <!-- Feature 3 -->
+                    <article class="feature-card">
+                        <div class="feature-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Pantauan Harga & Alert</h3>
+                        <p class="feature-card__description">
+                            Setel komoditas favorit & alert harga (di atas/di bawah target). 
+                            Dapatkan notifikasi push saat harga menyentuh target.
+                        </p>
+                        <ul class="feature-card__highlights">
+                            <li>Swipe hapus dengan undo snackbar</li>
+                            <li>Toggle aktif/nonaktif per alert</li>
+                            <li>Bottom sheet kelola favorit & alert</li>
+                            <li>FAB cepat tambah alert</li>
+                        </ul>
+                    </article>
+                    
+                    <!-- Feature 4 -->
+                    <article class="feature-card">
+                        <div class="feature-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Panduan Tanam & AI Pakar</h3>
+                        <p class="feature-card__description">
+                            Panduan lengkap tanam per komoditas (persiapan lahan, bibit, pupuk, hama, panen). 
+                            Chat AI Pakar untuk diagnosis hama & penyakit.
+                        </p>
+                        <ul class="feature-card__highlights">
+                            <li>Fase: Persiapan → Tanam → Perawatan → Panen</li>
+                            <li>AI Pakar: rule-based diagnosis hama</li>
+                            <li>Input suara (speech-to-text) untuk tanya jawab</li>
+                            <li>Gambar komoditas photorealistic 512x512</li>
+                        </ul>
+                    </article>
+                    
+                    <!-- Feature 5 -->
+                    <article class="feature-card">
+                        <div class="feature-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Catatan Keuangan & Panen</h3>
+                        <p class="feature-card__description">
+                            Catat biaya produksi (bibit, pupuk, tenaga, sewa alat) & hasil panen. 
+                            Laporan laba/rugi otomatis dengan grafik tren bulanan.
+                        </p>
+                        <ul class="feature-card__highlights">
+                            <li>Kategori: Bibit, Pupuk, Pestisida, Tenaga, Lainnya</li>
+                            <li>Grafik laba/rugi interaktif (fl_chart)</li>
+                            <li>Ekspor laporan PDF/CSV</li>
+                            <li>Multi-lahan & multi-tanaman</li>
+                        </ul>
+                    </article>
+                    
+                    <!-- Feature 6 -->
+                    <article class="feature-card">
+                        <div class="feature-card__icon" aria-hidden="true">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-card__title">Profil & Multi-peran</h3>
+                        <p class="feature-card__description">
+                            Satu akun, tiga peran: Petani (produksi/jual), Konsumen (beli/cek harga), 
+                            Admin (monitoring nasional). Avatar dinamis & preferensi personal.
+                        </p>
+                        <ul class="feature-card__highlights">
+                            <li>Avatar inisial nama otomatis</li>
+                            <li>Ubah nama, nomor, peran, PIN, biometrik</li>
+                            <li>Preferensi: notifikasi, tema, bahasa</li>
+                            <li>Versi aplikasi dari package_info</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Screenshots Section -->
+        <section id="screenshots" class="screenshots" aria-labelledby="screenshots-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="screenshots-title" class="section-title">Tampilan Aplikasi</h2>
+                    <p class="section-description">
+                        Desain Material Design 3, aksesibilitas WCAG 2.2 AA, responsif 360-390dp
+                    </p>
+                </header>
+                
+                <div class="carousel" role="region" aria-label="Carousel screenshot aplikasi">
+                    <div class="carousel__viewport">
+                        <div class="carousel__track" id="carouselTrack">
+                            <!-- Slide 1: Beranda -->
+                            <div class="carousel__slide" data-index="0">
+                                <div class="carousel__phone">
+                                    <img src="assets/images/screenshot-home.png" alt="Beranda: Sapaan, kartu laba/rugi, harga komoditas horizontal scroll, peringatan hama, akses cepat 2 kolom" class="carousel__image">
+                                </div>
+                                <div class="carousel__caption">
+                                    <h3>Beranda</h3>
+                                    <p>Ringkasan harga, keuangan, & akses cepat</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 2: Harga -->
+                            <div class="carousel__slide" data-index="1">
+                                <div class="carousel__phone">
+                                    <img src="assets/images/screenshot-price.png" alt="Harga Komoditas: Filter chips kategori, kartu harga full-width dengan sparkline, 6 state loading/error/empty/offline" class="carousel__image">
+                                </div>
+                                <div class="carousel__caption">
+                                    <h3>Harga Komoditas</h3>
+                                    <p>Filter kategori, sparkline trend, 6 state UI</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 3: Pasar -->
+                            <div class="carousel__slide" data-index="2">
+                                <div class="carousel__phone">
+                                    <img src="assets/images/screenshot-market.png" alt="Pasar Terdekat: Search bar fungsional, filter & sort bottom sheet, kartu pasar dengan rating & jarak, detail bottom sheet" class="carousel__image">
+                                </div>
+                                <div class="carousel__caption">
+                                    <h3>Pasar Terdekat</h3>
+                                    <p>Search, filter radius/kategori, sort, detail</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 4: Pantauan -->
+                            <div class="carousel__slide" data-index="3">
+                                <div class="carousel__phone">
+                                    <img src="assets/images/screenshot-monitoring.png" alt="Pantauan Harga: Switch adaptive alert, empty state ilustrasi, FAB tambah alert, bottom sheet kelola favorit & alert, swipe hapus dengan undo" class="carousel__image">
+                                </div>
+                                <div class="carousel__caption">
+                                    <h3>Pantauan & Alert</h3>
+                                    <p>Favorit, alert harga, switch adaptive, swipe undo</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 5: Profil -->
+                            <div class="carousel__slide" data-index="4">
+                                <div class="carousel__phone">
+                                    <img src="assets/images/screenshot-profile.png" alt="Profil: Avatar inisial dinamis, menu akun & keamanan, preferensi notifikasi/tema/bahasa, logout, versi app" class="carousel__image">
+                                </div>
+                                <div class="carousel__caption">
+                                    <h3>Profil & Pengaturan</h3>
+                                    <p>Multi-peran, avatar dinamis, keamanan, preferensi</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Carousel Controls -->
+                    <button class="carousel__btn carousel__btn--prev" aria-label="Screenshot sebelumnya" id="carouselPrev">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="15 18 9 12 15 6"/>
+                        </svg>
+                    </button>
+                    <button class="carousel__btn carousel__btn--next" aria-label="Screenshot selanjutnya" id="carouselNext">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Carousel Indicators -->
+                    <div class="carousel__indicators" role="tablist" aria-label="Pilih screenshot">
+                        <button class="carousel__indicator" role="tab" aria-selected="true" aria-label="Screenshot 1: Beranda" data-index="0"></button>
+                        <button class="carousel__indicator" role="tab" aria-selected="false" aria-label="Screenshot 2: Harga" data-index="1"></button>
+                        <button class="carousel__indicator" role="tab" aria-selected="false" aria-label="Screenshot 3: Pasar" data-index="2"></button>
+                        <button class="carousel__indicator" role="tab" aria-selected="false" aria-label="Screenshot 4: Pantauan" data-index="3"></button>
+                        <button class="carousel__indicator" role="tab" aria-selected="false" aria-label="Screenshot 5: Profil" data-index="4"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Users Section -->
+        <section id="users" class="users" aria-labelledby="users-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="users-title" class="section-title">Dibangun untuk Semua Pihak</h2>
+                    <p class="section-description">
+                        Tiga peran terintegrasi dalam satu ekosistem data
+                    </p>
+                </header>
+                
+                <div class="users__grid">
+                    <!-- Petani -->
+                    <article class="user-card">
+                        <div class="user-card__icon" aria-hidden="true">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="user-card__title">Petani</h3>
+                        <p class="user-card__description">Produksi, catat panen, jual hasil, kelola keuangan</p>
+                        <ul class="user-card__features">
+                            <li>Catat panen per lahan & komoditas</li>
+                            <li>Jual langsung ke kolektor/pasar</li>
+                            <li>Keuangan: biaya & laba/rugi otomatis</li>
+                            <li>Panduan tanam & konsultasi AI Pakar</li>
+                            <li>Alert harga komoditas favorit</li>
+                        </ul>
+                        <a href="#" class="user-card__link">Lihat fitur petani <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </article>
+                    
+                    <!-- Konsumen -->
+                    <article class="user-card">
+                        <div class="user-card__icon" aria-hidden="true">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="7" r="4"/>
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            </svg>
+                        </div>
+                        <h3 class="user-card__title">Konsumen</h3>
+                        <p class="user-card__description">Cek harga, beli langsung, temukan pasar terdekat</p>
+                        <ul class="user-card__features">
+                            <li>Daftar harga komoditas harian</li>
+                            <li>Beli langsung dari petani/pengepul</li>
+                            <li>Cari pasar & toko terdekat</li>
+                            <li>Bandung harga antar pasar</li>
+                            <riwayat pembelian & favorit</li>
+                        </ul>
+                        <a href="#" class="user-card__link">Lihat fitur konsumen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </article>
+                    
+                    <!-- Admin/Pemerintah -->
+                    <article class="user-card">
+                        <div class="user-card__icon" aria-hidden="true">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4M12 7v5l3 3"/>
+                            </svg>
+                        </div>
+                        <h3 class="user-card__title">Admin / Pemerintah</h3>
+                        <p class="user-card__description">Monitoring nasional, kebijakan, data agregat</p>
+                        <ul class="user-card__features">
+                            <li>Dashboard harga nasional real-time</li>
+                            <li>Peta sebaran produksi & pasar</li>
+                            <li>Analisis tren & early warning</li>
+                            <li>Kelola data komoditas & referensi</li>
+                            <li>Laporan & ekspor data kebijakan</li>
+                        </ul>
+                        <a href="#" class="user-card__link">Lihat fitur admin <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tech Stack Section -->
+        <section id="tech" class="tech" aria-labelledby="tech-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="tech-title" class="section-title">Tumpukan Teknologi</h2>
+                    <p class="section-description">
+                        Modern, scalable, dan offline-first
+                    </p>
+                </header>
+                
+                <div class="tech__grid">
+                    <div class="tech__category">
+                        <h3 class="tech__category-title">Framework & Bahasa</h3>
+                        <ul class="tech__list">
+                            <li><span class="tech__badge tech__badge--flutter">Flutter 3.24+</span> Framework UI cross-platform</li>
+                            <li><span class="tech__badge tech__badge--dart">Dart 3.5+</span> Bahasa type-safe, null-safety</li>
+                            <li><span class="tech__badge tech__badge--riverpod">Riverpod 2.5+</span> State management reactive</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech__category">
+                        <h3 class="tech__category-title">Desain & UX</h3>
+                        <ul class="tech__list">
+                            <li><span class="tech__badge tech__badge--m3">Material Design 3</span> Design system Google terbaru</li>
+                            <li><span class="tech__badge tech__badge--wcag">WCAG 2.2 AA</span> Aksesibilitas penuh</li>
+                            <li><span class="tech__badge tech__badge--fonts">Poppins + Inter</span> Tipografi JIS scale</li>
+                            <li><span class="tech__badge tech__badge--haptic">Haptic Feedback</span> Sentuhan responsif</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech__category">
+                        <h3 class="tech__category-title">Arsitektur & Data</h3>
+                        <ul class="tech__list">
+                            <li><span class="tech__badge tech__badge--offline">Offline-First</span> SharedPreferences + cache lokal</li>
+                            <li><span class="tech__badge tech__badge--connectivity">Connectivity Plus</span> Deteksi jaringan real-time</li>
+                            <li><span class="tech__badge tech__badge--charts">fl_chart</span> Grafik interaktif</li>
+                            <li><span class="tech__badge tech__badge--assets">112 Gambar WebP</span> Komoditas photorealistic</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tech__category">
+                        <h3 class="tech__category-title">Platform & Build</h3>
+                        <ul class="tech__list">
+                            <li><span class="tech__badge tech__badge--android">Android 5.0+ (API 21+)</span> Target SDK 34</li>
+                            <li><span class="tech__badge tech__badge--ios">iOS 12+</span> (Coming soon)</li>
+                            <li><span class="tech__badge tech__badge--web">Web (PWA)</span> Flutter web build</li>
+                            <li><span class="tech__badge tech__badge--apk">APK Debug</span> 192 MB, siap install</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="cta" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta__content">
+                    <h2 id="cta-title" class="cta__title">Siap Memulai?</h2>
+                    <p class="cta__description">
+                        Unduh aplikasi PanganKu Nasional sekarang dan bergabung dengan ribuan petani 
+                        yang sudah memanfaatkan intelijen pangan digital.
+                    </p>
+                    <div class="cta__actions">
+                        <a href="../app_pangan-debug.apk" class="btn btn--primary btn--xl" download>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7 10 12 15 17 10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            <span>Unduh APK v1.0.0 (192 MB)</span>
+                        </a>
+                        <a href="https://github.com" class="btn btn--outline btn--xl" target="_blank" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                            </svg>
+                            <span>Lihat Source Code</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <a href="#" class="footer__logo" aria-label="PanganKu Nasional - Beranda">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                            <rect width="32" height="32" rx="8" fill="currentColor"/>
+                            <path d="M16 8C11.5817 8 8 11.5817 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 11.5817 20.4183 8 16 8Z" stroke="white" stroke-width="2.5" fill="none"/>
+                            <path d="M16 12V20M12 16H20" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>PanganKu Nasional</span>
+                    </a>
+                    <p class="footer__tagline">Ekosistem Intelijen Pangan untuk Indonesia</p>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link" aria-label="GitHub" target="_blank" rel="noopener">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Twitter" target="_blank" rel="noopener">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2zM4 6a2 2 0 100-4 2 2 0 000 4z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <nav class="footer__nav" aria-label="Navigasi footer">
+                    <div class="footer__nav-group">
+                        <h4 class="footer__nav-title">Produk</h4>
+                        <ul>
+                            <li><a href="#features">Fitur</a></li>
+                            <li><a href="#screenshots">Tampilan</a></li>
+                            <li><a href="#users">Pengguna</a></li>
+                            <li><a href="#tech">Teknologi</a></li>
+                            <li><a href="../app_pangan-debug.apk" download>Unduh APK</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__nav-group">
+                        <h4 class="footer__nav-title">Dokumentasi</h4>
+                        <ul>
+                            <li><a href="#">Panduan Petani</a></li>
+                            <li><a href="#">Panduan Konsumen</a></li>
+                            <li><a href="#">API Reference</a></li>
+                            <li><a href="#">Design System</a></li>
+                            <li><a href="#">Changelog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__nav-group">
+                        <h4 class="footer__nav-title">Dukungan</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Hubungi Kami</a></li>
+                            <li><a href="#">Laporkan Bug</a></li>
+                            <li><a href="#">Request Fitur</a></li>
+                            <li><a href="#">Komunitas</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__nav-group">
+                        <h4 class="footer__nav-title">Legal</h4>
+                        <ul>
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Syarat Ketentuan</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">Lisensi Open Source</a></li>
+                            <li><a href="#">Keamanan Data</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    &copy; 2024 PanganKu Nasional. Dibangun dengan Flutter & Material Design 3.
+                </p>
+                <p class="footer__credit">
+                    Data harga bersumber dari pasar tradisional & modern di seluruh Indonesia.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

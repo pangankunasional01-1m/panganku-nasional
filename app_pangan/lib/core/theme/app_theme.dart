@@ -36,6 +36,16 @@ class AppTheme {
   static const Color darkMuted = Color(0xFFB8A992);
   static const Color darkBorder = Color(0xFF3B3226);
 
+  // ── Background Pattern ───────────────────────────────────────────────────
+  /// Subtle rice grain pattern for light theme
+  static const Color patternLight = Color(0x0A2E7D32); // ~4% opacity green
+  /// Subtle pattern for dark theme
+  static const Color patternDark = Color(0x0A4CAF50); // ~4% opacity light green
+
+  /// Custom painter for subtle rice grain pattern
+  static CustomPainter get riceGrainPattern => _RiceGrainPatternPainter();
+  static CustomPainter get riceGrainPatternDark => _RiceGrainPatternPainterDark();
+
   // ── Shadows ────────────────────────────────────────────────────────────
   static const Shadow shadowSoft = Shadow(
     color: Color(0x1A000000),
@@ -233,6 +243,112 @@ class AppTheme {
         margin: EdgeInsets.zero,
       ),
       inputDecorationTheme: _inputTheme(darkSurface, darkBorder, brandPrimaryLight, darkMuted),
+    );
+  }
+}
+
+/// Light theme rice grain pattern painter
+class _RiceGrainPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = AppTheme.patternLight
+      ..style = PaintingStyle.fill;
+
+    const double spacing = 48;
+    const double grainSize = 6;
+
+    for (double y = -spacing; y < size.height + spacing; y += spacing) {
+      for (double x = -spacing; x < size.width + spacing; x += spacing) {
+        final offsetX = (y ~/ spacing) % 2 == 0 ? 0 : spacing / 2;
+        final cx = x + offsetX;
+        final cy = y;
+
+        // Draw rice grain shape (ellipse with slight rotation)
+        canvas.save();
+        canvas.translate(cx, cy);
+        canvas.rotate(0.3); // ~17 degrees
+        canvas.drawOval(
+          Rect.fromCenter(center: Offset.zero, width: grainSize, height: grainSize * 0.5),
+          paint,
+        );
+        canvas.restore();
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+/// Dark theme rice grain pattern painter
+class _RiceGrainPatternPainterDark extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = AppTheme.patternDark
+      ..style = PaintingStyle.fill;
+
+    const double spacing = 48;
+    const double grainSize = 6;
+
+    for (double y = -spacing; y < size.height + spacing; y += spacing) {
+      for (double x = -spacing; x < size.width + spacing; x += spacing) {
+        final offsetX = (y ~/ spacing) % 2 == 0 ? 0 : spacing / 2;
+        final cx = x + offsetX;
+        final cy = y;
+
+        canvas.save();
+        canvas.translate(cx, cy);
+        canvas.rotate(0.3);
+        canvas.drawOval(
+          Rect.fromCenter(center: Offset.zero, width: grainSize, height: grainSize * 0.5),
+          paint,
+        );
+        canvas.restore();
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
+
+/// Widget wrapper untuk background pattern
+class PatternBackground extends StatelessWidget {
+  final Widget child;
+  final bool isDark;
+
+  const PatternBackground({
+    super.key,
+    required this.child,
+    this.isDark = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDarkMode = isDark || theme.brightness == Brightness.dark;
+
+    return Stack(
+      children: [
+        // Fallback background color
+        Positioned.fill(
+          child: Container(color: isDarkMode ? AppTheme.darkBg : AppTheme.bgCream),
+        ),
+        // Full-screen background image
+        Positioned.fill(
+          child: Image.asset(
+            'assets/images/backgound.jpg',
+            fit: BoxFit.cover,
+            color: isDarkMode ? Colors.black.withValues(alpha: 0.3) : null,
+            colorBlendMode: isDarkMode ? BlendMode.darken : null,
+            errorBuilder: (context, error, stackTrace) => const SizedBox.shrink(),
+          ),
+        ),
+        // Content
+        child,
+      ],
     );
   }
 }

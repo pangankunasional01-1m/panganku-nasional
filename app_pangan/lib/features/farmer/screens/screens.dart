@@ -14,3 +14,5 @@ export 'report_screen.dart';
 export 'settings_screen.dart';
 export 'main_nav_screen.dart';
 export 'farmer_home.dart';
+export 'market_screen.dart';
+export 'notifications_screen.dart';

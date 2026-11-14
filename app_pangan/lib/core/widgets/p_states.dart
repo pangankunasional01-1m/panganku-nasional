@@ -20,6 +20,7 @@ class PSkeleton extends StatefulWidget {
   State<PSkeleton> createState() => _PSkeletonState();
 }
 
+// ignore: unnecessary_underscores
 class _SlideGradient extends GradientTransform {
   final double slide;
   const _SlideGradient(this.slide);
@@ -46,6 +47,7 @@ class _PSkeletonState extends State<PSkeleton> with SingleTickerProviderStateMix
     final light = dark ? const Color(0xFF4A3F31) : AppTheme.neutral100;
     return AnimatedBuilder(
       animation: _c,
+      // ignore: unnecessary_underscores
       builder: (_, __) => Container(
         height: widget.height,
         width: widget.width,

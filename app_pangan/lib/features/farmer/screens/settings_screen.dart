@@ -35,6 +35,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   String _routeFor(UserRole role) => switch (role) {
         UserRole.petani => '/',
         UserRole.konsumen => '/consumer',
+        UserRole.peternak => '/',
+        UserRole.nelayan => '/',
+        UserRole.pelakuPangan => '/',
+        UserRole.pengepul => '/',
+        UserRole.olahan => '/',
         UserRole.admin => '/admin',
       };
 
@@ -83,6 +88,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                             title: Text(switch (r) {
                               UserRole.petani => 'Petani / Produsen',
                               UserRole.konsumen => 'Konsumen',
+                              UserRole.peternak => 'Peternak',
+                              UserRole.nelayan => 'Nelayan',
+                              UserRole.pelakuPangan => 'Pelaku Pangan',
+                              UserRole.pengepul => 'Pengepul',
+                              UserRole.olahan => 'Pengolah',
                               UserRole.admin => 'Pemerintah / Admin',
                             }),
                             activeColor: AppTheme.brandPrimary,

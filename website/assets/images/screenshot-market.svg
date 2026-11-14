@@ -1,0 +1,36 @@
+<svg width="280" height="620" viewBox="0 0 280 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="280" height="620" fill="#FBF7EF"/>
+  <rect width="280" height="180" fill="#2E7D32" rx="0 0 20 20"/>
+  <text x="140" y="50" text-anchor="middle" fill="white" font-family="system-ui" font-size="22" font-weight="700">Pasar Terdekat</text>
+  <rect x="20" y="80" width="240" height="50" rx="8" fill="white" fill-opacity="0.16" stroke="white" stroke-opacity="0.2"/>
+  <text x="140" y="112" text-anchor="middle" fill="white" font-family="system-ui" font-size="14" font-weight="600">🔍 Cari pasar, toko, atau komoditas...</text>
+  <rect x="20" y="140" width="110" height="36" rx="8" fill="white" fill-opacity="0.12" stroke="white" stroke-opacity="0.2"/>
+  <text x="75" y="163" text-anchor="middle" fill="white" font-family="system-ui" font-size="12" font-weight="600">🎛️ Filter</text>
+  <rect x="150" y="140" width="110" height="36" rx="8" fill="white" fill-opacity="0.12" stroke="white" stroke-opacity="0.2"/>
+  <text x="205" y="163" text-anchor="middle" fill="white" font-family="system-ui" font-size="12" font-weight="600">📊 Urutkan</text>
+  <g>
+    <rect x="20" y="210" width="240" height="110" rx="12" fill="white" stroke="#E2D5C3"/>
+    <rect x="30" y="220" width="80" height="80" rx="8" fill="#E8F5E9"/>
+    <text x="70" y="270" text-anchor="middle" fill="#2E7D32" font-size="28">🏪</text>
+    <text x="140" y="230" fill="#2B2118" font-family="system-ui" font-size="14" font-weight="600">Pasar Induk Kramat Jati</text>
+    <text x="140" y="250" fill="#8E7C68" font-family="system-ui" font-size="11">Jl. Kramat Jati Raya No.12, Jakarta Timur</text>
+    <text x="140" y="270" fill="#1B9E56" font-family="system-ui" font-size="12" font-weight="600">● Buka • 2.3 km • ⭐ 4.5</text>
+    <text x="140" y="290" fill="#2E7D32" font-family="system-ui" font-size="11">Unggulan: Cabai, Bawang, Tomat, Pisang</text>
+    
+    <rect x="20" y="210" width="240" height="110" rx="12" fill="white" stroke="#E2D5C3" transform="translate(0 130)"/>
+    <rect x="30" y="220" width="80" height="80" rx="8" fill="#E8F5E9" transform="translate(0 130)"/>
+    <text x="70" y="270" text-anchor="middle" fill="#2E7D32" font-size="28" transform="translate(0 130)">🏬</text>
+    <text x="140" y="230" fill="#2B2118" font-family="system-ui" font-size="14" font-weight="600" transform="translate(0 130)">Toko Tani Makmur</text>
+    <text x="140" y="250" fill="#8E7C68" font-family="system-ui" font-size="11" transform="translate(0 130)">Jl. Raya Bogor KM 25, Depok</text>
+    <text x="140" y="270" fill="#1B9E56" font-family="system-ui" font-size="12" font-weight="600" transform="translate(0 130)">● Buka • 4.1 km • ⭐ 4.7</text>
+    <text x="140" y="290" fill="#2E7D32" font-family="system-ui" font-size="11" transform="translate(0 130)">Unggulan: Padi, Jagung, Kedelai, Gula</text>
+    
+    <rect x="20" y="210" width="240" height="110" rx="12" fill="white" stroke="#E2D5C3" transform="translate(0 260)"/>
+    <rect x="30" y="220" width="80" height="80" rx="8" fill="#E8F5E9" transform="translate(0 260)"/>
+    <text x="70" y="270" text-anchor="middle" fill="#2E7D32" font-size="28" transform="translate(0 260)">🚚</text>
+    <text x="140" y="230" fill="#2B2118" font-family="system-ui" font-size="14" font-weight="600" transform="translate(0 260)">Kolektor Pak Budi</text>
+    <text x="140" y="250" fill="#8E7C68" font-family="system-ui" font-size="11" transform="translate(0 260)">Desa Sukamaju, Kec. Cileungsi</text>
+    <text x="140" y="270" fill="#F26B3A" font-family="system-ui" font-size="12" font-weight="600" transform="translate(0 260)">○ Tutup • 1.8 km • ⭐ 4.2</text>
+    <text x="140" y="290" fill="#2E7D32" font-family="system-ui" font-size="11" transform="translate(0 260)">Beli: Cabai, Bawang, Tomat (harga petani)</text>
+  </g>
+</svg>

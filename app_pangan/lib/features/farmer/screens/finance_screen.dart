@@ -266,6 +266,7 @@ class _Panel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final t = trailing;
     return Container(
       padding: const EdgeInsets.all(18),
       decoration: AppTheme.cardDecoration(color: cs.surface, radius: 24),
@@ -292,7 +293,7 @@ class _Panel extends StatelessWidget {
                   style: AppTheme.poppins(fontSize: 16, weight: FontWeight.w600, color: cs.onSurface),
                 ),
               ),
-              if (trailing != null) trailing!,
+              if (t != null) ...[t],
             ],
           ),
           const SizedBox(height: 16),
@@ -449,7 +450,7 @@ class _CostBreakdown extends StatelessWidget {
                         tween: Tween(begin: 0, end: _items[i].$2 / maxV),
                         duration: Duration(milliseconds: 800 + i * 150),
                         curve: Curves.easeOutCubic,
-                        builder: (_, v, __) => FractionallySizedBox(
+                        builder: (_, v, _) => FractionallySizedBox(
                           widthFactor: v.clamp(0.0, 1.0),
                           child: Container(
                             decoration: BoxDecoration(

@@ -1,22 +1,17 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:haptic_feedback/haptic_feedback.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/animation/entrance_animation.dart';
-import '../../../core/theme/app_theme.dart';
-import '../../../core/widgets/p_button.dart';
-import '../../../core/widgets/p_chip_badge.dart';
-import '../../../core/widgets/p_connection_banner.dart';
-import '../../../core/widgets/pangan_sliver_header.dart';
-import 'ai_expert_screen.dart';
-import 'planting_guide_screen.dart';
-import 'production_screen.dart';
-import 'report_screen.dart';
-import 'finance_screen.dart';
+import '../../../core/theme/go_pay_theme.dart';
+import '../../../core/widgets/favorite_slot.dart';
+import '../../../core/widgets/menu_grid_item.dart';
+import '../../../core/widgets/menu_panel.dart';
+import '../../../core/widgets/pill_chip.dart';
+import '../../../core/widgets/promo_card.dart';
+import '../../../features/auth/auth_provider.dart';
 
-/// Beranda (Home Tab) — ringkasan harga hari ini, laba/rugi, dan akses cepat
+/// Beranda (Home Tab) — GoPay style redesign dengan struktur anti-overflow
 class HomeTabScreen extends ConsumerStatefulWidget {
   const HomeTabScreen({super.key});
 
@@ -25,21 +20,6 @@ class HomeTabScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeTabScreenState extends ConsumerState<HomeTabScreen> {
-  late final PageController _pageController;
-  int _currentPage = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(viewportFraction: 0.85);
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   static String _greeting() {
     final h = DateTime.now().hour;
     if (h < 11) return 'Selamat pagi';
@@ -48,685 +28,321 @@ class _HomeTabScreenState extends ConsumerState<HomeTabScreen> {
     return 'Selamat malam';
   }
 
-  void _navigateToPriceTab(BuildContext context) {
-    HapticFeedback.lightImpact();
-    // Navigate to PriceTabScreen (index 1 in MainNavScreen)
-    // This would require a callback or using a global navigator key
-    // For now, show a snackbar
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: const Text('Buka tab Harga untuk melihat semua komoditas'),
-        behavior: SnackBarBehavior.floating,
-        action: SnackBarAction(
-          label: 'OK',
-          onPressed: () {},
-        ),
-      ),
-    );
-  }
-
-  void _onCommodityTap(BuildContext context, _Commodity commodity) {
-    HapticFeedback.lightImpact();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Detail ${commodity.name} — segera hadir'),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final ref = this.ref;
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.light,
-      child: Scaffold(
-        backgroundColor: AppTheme.bgCream,
-        body: RefreshIndicator(
-          onRefresh: _onRefresh,
-          color: AppTheme.brandPrimary,
-          child: CustomScrollView(
-            physics: const BouncingScrollPhysics(),
-            slivers: [
-              PanganSliverHeaderSimple(
-                expandedHeight: 190,
-                collapsedTitle: 'Bapak Sugianto',
-                expandedContent: EntranceAnimation(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _greeting(),
-                              style: AppTheme.inter(
-                                fontSize: 14,
-                                weight: FontWeight.w500,
-                                color: Colors.white.withValues(alpha: 0.8),
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              'Bapak Sugianto',
-                              style: AppTheme.poppins(
-                                fontSize: 26,
-                                weight: FontWeight.w700,
-                                color: Colors.white,
-                                height: 1.2,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 6,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.16),
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.28),
-                                ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Icon(
-                                    Icons.eco_rounded,
-                                    size: 14,
-                                    color: Colors.white,
-                                  ),
-                                  const SizedBox(width: 6),
-                                  Text(
-                                    'Musim Tanam 2026 — Cabai',
-                                    style: AppTheme.inter(
-                                      fontSize: 12,
-                                      weight: FontWeight.w600,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      _NotificationButton(
-                        icon: Icons.notifications_none_rounded,
-                        label: 'Notifikasi',
-                        showDot: true,
-                        onTap: () {
-                          HapticFeedback.lightImpact();
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Notifikasi — segera hadir'),
-                              behavior: SnackBarBehavior.floating,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 16),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: EntranceAnimation(
-                        delay: Delay(80),
-                        child: PConnectionBanner(state: PSyncState.synced),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: EntranceAnimation(
-                        delay: Delay(160),
-                        scaleFrom: 0.96,
-                        child: _ProfitHero(),
-                      ),
-                    ),
-                    const SizedBox(height: 28),
-                    EntranceAnimation(
-                      delay: const Delay(240),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: _SectionHeader(
-                          title: 'Harga Komoditas Hari Ini',
-                          action: 'Lihat semua',
-                          onAction: () => _navigateToPriceTab(context),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    // PageView with snap for horizontal scroll
-                    SizedBox(
-                      height: 200,
-                      child: PageView.builder(
-                        controller: _pageController,
-                        physics: const PageScrollPhysics(),
-                        onPageChanged: (page) {
-                          setState(() => _currentPage = page);
-                          HapticFeedback.selectionClick();
-                        },
-                        itemCount: _commodities.length,
-                        itemBuilder: (context, index) {
-                          final c = _commodities[index];
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              left: index == 0 ? 20 : 6,
-                              right: index == _commodities.length - 1 ? 20 : 6,
-                              top: 10,
-                              bottom: 10,
-                            ),
-                            child: EntranceAnimation(
-                              delay: Delay(300 + index * 90),
-                              offset: const Offset(0.25, 0),
-                              child: _CommodityCard(
-                                name: c.name,
-                                price: c.price,
-                                stock: c.stock,
-                                category: c.category,
-                                icon: c.icon,
-                                tint: c.tint,
-                                onTap: () => _onCommodityTap(context, c),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    // Page indicator dots
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(_commodities.length, (index) {
-                          return AnimatedContainer(
-                            duration: const Duration(milliseconds: 250),
-                            curve: Curves.easeOut,
-                            margin: const EdgeInsets.symmetric(horizontal: 4),
-                            width: _currentPage == index ? 20 : 8,
-                            height: 8,
-                            decoration: BoxDecoration(
-                              color: _currentPage == index
-                                  ? AppTheme.brandPrimary
-                                  : AppTheme.neutral300,
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          );
-                        }),
-                      ),
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // ── Peringatan hama ─────────────────────────────────────
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: EntranceAnimation(
-                        delay: const Delay(380),
-                        child: _PestAlert(
-                          onTap: () {
-                            HapticFeedback.lightImpact();
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Detail peringatan — segera hadir'),
-                                behavior: SnackBarBehavior.floating,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 28),
-
-                    // ── Cepat akses ─────────────────────────────────────────
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: EntranceAnimation(
-                        delay: const Delay(440),
-                        child: const _SectionHeader(title: 'Cepat Akses'),
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: _bigButtonGrid(context),
-                    ),
-                    const SizedBox(height: 100), // Space for bottom nav
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Future<void> _onRefresh() async {
     HapticFeedback.lightImpact();
-    // Simulate refresh
     await Future.delayed(const Duration(milliseconds: 800));
     if (mounted) setState(() {});
   }
 
-  static const _commodities = <_Commodity>[
-    _Commodity(
-      'Padi',
-      'Rp 6.800 / kg',
-      'Tersedia 1.200 kg',
-      'Pangan Pokok',
-      Icons.grain_rounded,
-      Color(0xFFD4B44A),
-    ),
-    _Commodity(
-      'Beras',
-      'Rp 12.500 / kg',
-      'Tersedia 500 kg',
-      'Pangan Pokok',
-      Icons.grain_rounded,
-      Color(0xFFD99A1E),
-    ),
-    _Commodity(
-      'Jagung',
-      'Rp 8.500 / kg',
-      'Tersedia 300 kg',
-      'Pangan Pokok',
-      Icons.grass_rounded,
-      AppTheme.brandPrimary,
-    ),
-    _Commodity(
-      'Singkong',
-      'Rp 4.000 / kg',
-      'Tersedia 400 kg',
-      'Pangan Pokok',
-      Icons.eco_rounded,
-      Color(0xFFC9A86A),
-    ),
-    _Commodity(
-      'Cabai',
-      'Rp 45.000 / kg',
-      'Tersedia 50 kg',
-      'Sayuran',
-      Icons.local_fire_department_rounded,
-      AppTheme.brandAccent,
-    ),
-  ];
-
-  Widget _bigButtonGrid(BuildContext context) {
-    final items = <_QuickAction>[
-      _QuickAction(
-        icon: Icons.payments_rounded,
-        label: 'Catat Biaya',
-        color: AppTheme.brandPrimary,
-        onTap: () {
-          HapticFeedback.lightImpact();
-          Navigator.pushNamed(context, '/finance');
-        },
-      ),
-      _QuickAction(
-        icon: Icons.inventory_2_rounded,
-        label: 'Hasil Produksi',
-        color: AppTheme.brandPrimary,
-        onTap: () {
-          HapticFeedback.lightImpact();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const ProductionScreen()),
-          );
-        },
-      ),
-      _QuickAction(
-        icon: Icons.shopping_cart_rounded,
-        label: 'Jual',
-        color: AppTheme.brandPrimary,
-        onTap: () {
-          HapticFeedback.lightImpact();
-          Navigator.pushNamed(context, '/sell');
-        },
-      ),
-      _QuickAction(
-        icon: Icons.smart_toy_rounded,
-        label: 'Tanya Pakar AI',
-        color: AppTheme.brandAccent,
-        onTap: () {
-          HapticFeedback.lightImpact();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const AiExpertScreen()),
-          );
-        },
-      ),
-      _QuickAction(
-        icon: Icons.menu_book_rounded,
-        label: 'Panduan Tanam',
-        color: AppTheme.brandPrimary,
-        onTap: () {
-          HapticFeedback.lightImpact();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const PlantingGuideScreen()),
-          );
-        },
-      ),
-      _QuickAction(
-        icon: Icons.description_rounded,
-        label: 'Laporan',
-        color: AppTheme.brandPrimary,
-        onTap: () {
-          HapticFeedback.lightImpact();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const ReportScreen()),
-          );
-        },
-      ),
-    ];
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        const gap = 12.0;
-        // 2 columns instead of 3 for larger touch targets
-        final w = (constraints.maxWidth - gap) / 2;
-        return Wrap(
-          spacing: gap,
-          runSpacing: gap,
-          children: [
-            for (var i = 0; i < items.length; i++)
-              SizedBox(
-                width: w,
-                child: EntranceAnimation(
-                  delay: Delay(500 + i * 70),
-                  offset: const Offset(0, 0.25),
-                  scaleFrom: 0.88,
-                  curve: Curves.easeOutBack,
-                  child: _QuickActionButton(action: items[i]),
-                ),
-              ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _QuickAction {
-  final IconData icon;
-  final String label;
-  final Color color;
-  final VoidCallback onTap;
-
-  const _QuickAction({
-    required this.icon,
-    required this.label,
-    required this.color,
-    required this.onTap,
-  });
-}
-
-class _QuickActionButton extends StatelessWidget {
-  final _QuickAction action;
-
-  const _QuickActionButton({required this.action});
-
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: action.label,
-      button: true,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: action.onTap,
-          borderRadius: BorderRadius.circular(22),
-          splashColor: action.color.withValues(alpha: 0.12),
-          highlightColor: action.color.withValues(alpha: 0.08),
-          child: Container(
-            // Minimum 112dp height for better touch target
-            constraints: const BoxConstraints(minHeight: 112),
-            padding: const EdgeInsets.fromLTRB(16, 20, 16, 18),
-            decoration: AppTheme.cardDecoration(radius: 22),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  width: 56,
-                  height: 56,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        action.color.withValues(alpha: 0.20),
-                        action.color.withValues(alpha: 0.07),
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(18),
+    final auth = ref.watch(authProvider);
+    final userName = auth.user?.name ?? 'Bapak Sugianto';
+    final greeting = _greeting();
+
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(
+        textScaler: TextScaler.linear(
+          MediaQuery.of(context).textScaler.scale(1.0).clamp(1.0, 1.15),
+        ),
+      ),
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: Scaffold(
+          backgroundColor: GoPayColors().bgCream,
+          body: RefreshIndicator(
+            onRefresh: _onRefresh,
+            color: GoPayColors().brandPrimary,
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Header section - Container tanpa height, hanya padding
+                  _headerSection(userName: userName, greeting: greeting),
+
+                  // MenuPanel overlapping header
+                  Transform.translate(
+                    offset: const Offset(0, -24),
+                    child: _buildMenuPanel(),
                   ),
-                  child: Icon(action.icon, size: 28, color: action.color),
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  action.label,
-                  style: AppTheme.inter(
-                    fontSize: 13,
-                    weight: FontWeight.w600,
-                    color: AppTheme.textDark,
-                    height: 1.25,
-                  ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+
+                  // Pill Chips horizontal scroll - tinggi mengikuti konten
+                  _buildPillChips(),
+
+                  // Favorite Slots bar
+                  _buildFavoriteSlots(),
+
+                  // "Spesial buat petani" section - tinggi mengikuti konten
+                  _buildSpecialSection(),
+
+                  // Bottom nav clearance
+                  const SizedBox(height: 110),
+                ],
+              ),
             ),
           ),
         ),
       ),
     );
   }
-}
 
-class _Commodity {
-  final String name, price, stock, category;
-  final IconData icon;
-  final Color tint;
-  const _Commodity(
-    this.name,
-    this.price,
-    this.stock,
-    this.category,
-    this.icon,
-    this.tint,
-  );
-}
+  /// HeaderSection: Container gradient tanpa height, hanya padding
+  Widget _headerSection({required String userName, required String greeting}) {
+    final color = GoPayColors();
 
-class _NotificationButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final IconData icon;
-  final String label;
-  final bool showDot;
-  const _NotificationButton({
-    required this.onTap,
-    this.icon = Icons.notifications_none_rounded,
-    this.label = 'Notifikasi',
-    this.showDot = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      label: label,
-      button: true,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(16),
-          splashColor: Colors.white.withValues(alpha: 0.2),
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Container(
-                width: 48,
-                height: 48,
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.18),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
-                ),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 25,
-                ),
-              ),
-              if (showDot)
-                const Positioned(
-                  top: -2,
-                  right: -2,
-                  child: PulseDot(color: AppTheme.brandSecondary, size: 8),
-                ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-// ── Kartu hero laba/rugi ───────────────────────────────────────────────────
-class _ProfitHero extends StatelessWidget {
-  const _ProfitHero();
-
-  static const _data = [2.0, 2.6, 2.3, 3.1, 2.9, 3.8, 3.5, 4.4];
-
-  @override
-  Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(20, 18, 20, 14),
-      decoration: AppTheme.cardDecoration(
-        radius: 28,
-        shadows: AppTheme.softShadow(0.12),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [color.brandPrimary, color.brandSecondary],
+          stops: const [0.0, 0.6],
+        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  'Laba/Rugi Sementara',
-                  style: AppTheme.inter(
-                    fontSize: 13,
-                    weight: FontWeight.w500,
-                    color: AppTheme.neutral400,
-                  ),
-                ),
-              ),
-              const PStatusBadge(type: PStatusType.success, label: 'UNTUNG'),
-            ],
+          // Subtle texture overlay
+          Positioned.fill(
+            child: CustomPaint(painter: _HeaderPatternPainter()),
           ),
-          const SizedBox(height: 8),
-          FittedBox(
-            fit: BoxFit.scaleDown,
-            alignment: Alignment.centerLeft,
-            child: AnimatedCounter(
-              value: 1200000,
-              prefix: 'Rp ',
-              style: tabularNumber(
-                fontSize: 36,
-                weight: FontWeight.w800,
-                color: AppTheme.statusSuccess,
-              ),
-            ),
-          ),
-          const SizedBox(height: 6),
-          Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(
-                  color: AppTheme.statusSuccess.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(
-                      Icons.arrow_upward_rounded,
-                      size: 13,
-                      color: AppTheme.statusSuccess,
-                    ),
-                    const SizedBox(width: 3),
-                    Text(
-                      '+8%',
-                      style: AppTheme.inter(
-                        fontSize: 12,
-                        weight: FontWeight.w700,
-                        color: AppTheme.statusSuccess,
+          SafeArea(
+            bottom: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Top row: Greeting + Help/Notification buttons
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  '$greeting,',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white.withValues(alpha: 0.85),
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  userName,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 8),
+                                // Season chip
+                                Container(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: 0.15),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: Colors.white.withValues(alpha: 0.25),
+                                      width: 0.5,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Icon(Icons.eco_rounded, size: 13, color: Colors.white),
+                                      const SizedBox(width: 5),
+                                      Flexible(
+                                        child: Text(
+                                          'Musim Tanam 2026 — Cabai',
+                                          style: GoogleFonts.inter(
+                                            fontSize: 11,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white,
+                                          ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Help & Notification buttons
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              _HeaderActionButton(
+                                icon: Icons.help_outline_rounded,
+                                onTap: () => Navigator.pushNamed(context, '/guide'),
+                              ),
+                              const SizedBox(width: 8),
+                              _HeaderActionButton(
+                                icon: Icons.notifications_none_rounded,
+                                showDot: true,
+                                onTap: () => Navigator.pushNamed(context, '/notifications'),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'vs musim lalu',
-                style: AppTheme.inter(fontSize: 12, color: AppTheme.neutral400),
-              ),
-            ],
-          ),
-          const SizedBox(height: 14),
-          SizedBox(
-            height: 70,
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(begin: 0, end: 1),
-              duration: const Duration(milliseconds: 1300),
-              curve: Curves.easeOutCubic,
-              builder: (_, t, __) => LineChart(
-                LineChartData(
-                  minY: 0,
-                  maxY: 5,
-                  gridData: const FlGridData(show: false),
-                  titlesData: FlTitlesData(show: false),
-                  borderData: FlBorderData(show: false),
-                  lineTouchData: LineTouchData(enabled: false),
-                  lineBarsData: [
-                    LineChartBarData(
-                      spots: [
-                        for (var i = 0; i < _data.length; i++)
-                          FlSpot(i.toDouble(), _data[i] * t),
-                      ],
-                      isCurved: true,
-                      color: AppTheme.statusSuccess,
-                      barWidth: 3,
-                      isStrokeCapRound: true,
-                      dotData: FlDotData(show: false),
-                      belowBarData: BarAreaData(
-                        show: true,
-                        gradient: LinearGradient(
-                          colors: [
-                            AppTheme.statusSuccess.withValues(alpha: 0.25),
-                            AppTheme.statusSuccess.withValues(alpha: 0.0),
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                        ),
+
+                      const SizedBox(height: 24),
+
+                      // Profit Summary
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Total Laba Bulan Ini',
+                                  style: GoogleFonts.inter(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white.withValues(alpha: 0.85),
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                const SizedBox(height: 4),
+                                // Angka dengan FittedBox supaya tidak overflow
+                                FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Rp 12.500.000',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white,
+                                      fontFeatures: const [FontFeature.tabularFigures()],
+                                      height: 1.2,
+                                    ),
+                                    maxLines: 1,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Flexible(
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                        decoration: BoxDecoration(
+                                          color: color.statusSuccess.withValues(alpha: 0.2),
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(Icons.arrow_upward_rounded, size: 12, color: color.statusSuccess),
+                                            const SizedBox(width: 4),
+                                            Flexible(
+                                              child: Text(
+                                                '+15.3% dari bulan lalu',
+                                                style: GoogleFonts.inter(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: color.statusSuccess,
+                                                ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Decorative icon - use Flexible to prevent overflow
+                          Flexible(
+                            child: Container(
+                              width: 72,
+                              height: 72,
+                              decoration: BoxDecoration(
+                                color: Colors.white.withValues(alpha: 0.12),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: const Icon(
+                                Icons.trending_up_rounded,
+                                size: 36,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
+
+                      const SizedBox(height: 16),
+
+                      // Expense row (tappable -> Keuangan)
+                      _ExpenseRow(
+                        amount: 'Rp 9.750.000',
+                        label: 'pengeluaran bulan ini',
+                        onTap: () {
+                          HapticFeedback.lightImpact();
+                          Navigator.pushNamed(context, '/finance');
+                        },
+                      ),
+
+                      const SizedBox(height: 20),
+
+                      // Action buttons: Catat Panen & Jual Hasil - use Flexible with flex: 1
+                      Row(
+                        children: [
+                          Flexible(
+                            flex: 1,
+                            child: _HeaderActionButtonLarge(
+                              label: 'Catat Panen',
+                              icon: Icons.add_rounded,
+                              color: Colors.white,
+                              textColor: color.brandPrimary,
+                              onTap: () {
+                                HapticFeedback.lightImpact();
+                                Navigator.pushNamed(context, '/production');
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Flexible(
+                            flex: 1,
+                            child: _HeaderActionButtonLarge(
+                              label: 'Jual Hasil',
+                              icon: Icons.sell_rounded,
+                              color: Colors.white.withValues(alpha: 0.15),
+                              textColor: Colors.white,
+                              borderColor: Colors.white.withValues(alpha: 0.3),
+                              onTap: () {
+                                HapticFeedback.lightImpact();
+                                Navigator.pushNamed(context, '/sell');
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ),
@@ -734,232 +350,306 @@ class _ProfitHero extends StatelessWidget {
       ),
     );
   }
-}
 
-class _SectionHeader extends StatelessWidget {
-  final String title;
-  final String? action;
-  final VoidCallback? onAction;
-  const _SectionHeader({required this.title, this.action, this.onAction});
+  /// Menu Panel - GoPay style dengan GridView rapi (4 kolom)
+  Widget _buildMenuPanel() {
+    final color = GoPayColors();
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    // 8 item menu cepat akses dengan warna pastel masing-masing
+    final items = [
+      _MenuItemData(
+        icon: Icons.add_circle_outline_rounded,
+        label: 'Catat Panen',
+        iconBgColor: const Color(0xFFE8F5E9),
+        iconColor: const Color(0xFF2E7D32),
+        badge: 'BARU',
+        badgeColor: color.statusSuccess,
+        onTap: () => Navigator.pushNamed(context, '/production'),
+      ),
+      _MenuItemData(
+        icon: Icons.sell_outlined,
+        label: 'Jual Hasil',
+        iconBgColor: const Color(0xFFFFF3E0),
+        iconColor: const Color(0xFFE65100),
+        onTap: () => Navigator.pushNamed(context, '/sell'),
+      ),
+      _MenuItemData(
+        icon: Icons.account_balance_wallet_outlined,
+        label: 'Keuangan',
+        iconBgColor: const Color(0xFFFFE0B2),
+        iconColor: const Color(0xFFEF6C00),
+        onTap: () => Navigator.pushNamed(context, '/finance'),
+      ),
+      _MenuItemData(
+        icon: Icons.menu_book_outlined,
+        label: 'Panduan',
+        iconBgColor: const Color(0xFFE3F2FD),
+        iconColor: const Color(0xFF1565C0),
+        onTap: () => Navigator.pushNamed(context, '/guide'),
+      ),
+      _MenuItemData(
+        icon: Icons.assessment_outlined,
+        label: 'Laporan',
+        iconBgColor: const Color(0xFFFCE4EC),
+        iconColor: const Color(0xFFC2185B),
+        onTap: () => Navigator.pushNamed(context, '/report'),
+      ),
+      _MenuItemData(
+        icon: Icons.bar_chart_outlined,
+        label: 'Harga',
+        iconBgColor: const Color(0xFFF3E5F5),
+        iconColor: const Color(0xFF7B1FA2),
+        onTap: () => Navigator.pushNamed(context, '/market'),
+      ),
+      _MenuItemData(
+        icon: Icons.storefront_outlined,
+        label: 'Pasar',
+        iconBgColor: const Color(0xFFE0F2F1),
+        iconColor: const Color(0xFF00695C),
+        onTap: () => Navigator.pushNamed(context, '/market'),
+      ),
+      _MenuItemData(
+        icon: Icons.grid_view_rounded,
+        label: 'Lainnya',
+        iconBgColor: const Color(0xFFF5F5F5),
+        iconColor: const Color(0xFF757575),
+        onTap: () {},
+      ),
+    ];
+
+    return MenuPanel(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.all(16),
+      borderRadius: 28,
       children: [
-        Flexible(
+        // Grid 4x2 rapi dengan GridView (bukan Wrap)
+        SizedBox(
+          height: 250,
+          child: GridView.count(
+            crossAxisCount: 4,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 14,
+            childAspectRatio: 0.82,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            children: items.map((item) {
+              return MenuGridItem(
+                icon: item.icon,
+                label: item.label,
+                iconBgColor: item.iconBgColor,
+                iconColor: item.iconColor,
+                badge: item.badge,
+                badgeColor: item.badgeColor,
+                onTap: item.onTap,
+              );
+            }).toList(),
+          ),
+        ),
+      ],
+    );
+  }
+
+  /// Horizontal pill chips - butuh SizedBox height untuk horizontal ListView di SingleChildScrollView
+  Widget _buildPillChips() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: SizedBox(
+        height: 56,
+        child: ListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          scrollDirection: Axis.horizontal,
+          children: [
+            PillChip(
+              label: 'Tersinkron',
+              icon: Icons.cloud_done_rounded,
+              trailing: 'ONLINE',
+              isOnline: true,
+              iconColor: GoPayColors().statusSuccess,
+              onTap: () {},
+            ),
+            PillChip(
+              label: 'Peringatan Hama',
+              icon: Icons.bug_report_rounded,
+              trailing: '1 aktif >',
+              iconColor: GoPayColors().statusWarning,
+              onTap: () {},
+            ),
+            PillChip(
+              label: 'Harga naik hari ini',
+              icon: Icons.trending_up_rounded,
+              trailing: 'Lihat >',
+              iconColor: GoPayColors().brandPrimary,
+              onTap: () => Navigator.pushNamed(context, '/market'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Favorite slots bar
+  Widget _buildFavoriteSlots() {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: GoPayColors().surfaceWhite,
+        borderRadius: BorderRadius.circular(GoPayRadius.pill),
+        border: Border.all(color: GoPayColors().dividerLight, width: 0.5),
+        boxShadow: [GoPayShadows.cardShadow()],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          FavoriteSlot(
+            icon: Icons.grass_rounded,
+            label: 'Cabai Merah',
+            onTap: () {},
+          ),
+          FavoriteSlot(
+            icon: Icons.grain_rounded,
+            label: 'Lahan Utara',
+            onTap: () {},
+          ),
+          FavoriteSlot(
+            icon: Icons.add_circle_outline_rounded,
+            label: '',
+            hasPlus: true,
+            onTap: () {},
+          ),
+          FavoriteSlot(
+            icon: Icons.more_horiz_rounded,
+            label: 'Lainnya',
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// "Spesial buat petani" horizontal scroll - tinggi auto
+  Widget _buildSpecialSection() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            title,
-            style: AppTheme.poppins(
+            'Spesial buat petani',
+            style: GoogleFonts.poppins(
               fontSize: 18,
-              weight: FontWeight.w700,
-              color: AppTheme.textDark,
+              fontWeight: FontWeight.w700,
+              color: GoPayColors().textDark,
             ),
           ),
         ),
-        if (action != null)
-          TextButton(
-            onPressed: onAction,
-            style: TextButton.styleFrom(
-              foregroundColor: AppTheme.brandPrimary,
-              minimumSize: const Size(48, 40),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  action!,
-                  style: AppTheme.inter(
-                    fontSize: 13,
-                    weight: FontWeight.w600,
-                    color: AppTheme.brandPrimary,
-                  ),
-                ),
-                const Icon(Icons.chevron_right_rounded, size: 18),
-              ],
-            ),
+        const SizedBox(height: 12),
+        SizedBox(
+          height: 160,
+          child: ListView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            children: [
+              PromoCard(
+                title: 'Cabai Merah',
+                subtitle: 'Rp 45.000/kg • Stok 120 kg',
+                icon: Icons.local_fire_department_rounded,
+                badgeColor: GoPayColors().brandAccent,
+                onTap: () {},
+              ),
+              PromoCard(
+                title: 'Peringatan Hama',
+                subtitle: 'Ulat Grayak • Lahan Utara',
+                icon: Icons.bug_report_rounded,
+                badgeColor: GoPayColors().statusWarning,
+                onTap: () {},
+              ),
+              PromoCard(
+                title: 'Tips Budidaya',
+                subtitle: 'Cara panen cabai optimal',
+                icon: Icons.lightbulb_outline_rounded,
+                badgeColor: GoPayColors().brandSecondary,
+                onTap: () => Navigator.pushNamed(context, '/guide'),
+              ),
+            ],
           ),
+        ),
       ],
     );
   }
 }
 
-class _PestAlert extends StatelessWidget {
+/// Data untuk item menu dengan warna pastel
+class _MenuItemData {
+  final IconData icon;
+  final String label;
+  final Color iconBgColor;
+  final Color iconColor;
+  final String? badge;
+  final Color? badgeColor;
   final VoidCallback onTap;
-  const _PestAlert({required this.onTap});
 
-  @override
-  Widget build(BuildContext context) {
-    const c = AppTheme.statusWarning;
-    return Semantics(
-      label: 'Peringatan hama, Hawar daun terdeteksi di kabupaten Anda',
-      button: true,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(22),
-          splashColor: c.withValues(alpha: 0.12),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [c.withValues(alpha: 0.16), c.withValues(alpha: 0.05)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: c.withValues(alpha: 0.35)),
-            ),
-            child: Row(
-              children: [
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: c.withValues(alpha: 0.18),
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: const Icon(
-                        Icons.warning_amber_rounded,
-                        color: c,
-                        size: 28,
-                      ),
-                    ),
-                    const Positioned(
-                      top: -7,
-                      right: -7,
-                      child: PulseDot(color: AppTheme.statusDanger, size: 7),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Peringatan Hama',
-                        style: AppTheme.poppins(
-                          fontSize: 14,
-                          weight: FontWeight.w700,
-                          color: const Color(0xFFB87A1F),
-                        ),
-                      ),
-                      const SizedBox(height: 3),
-                      Text(
-                        'Hawar daun terdeteksi di kabupaten Anda. Segera periksa lahan.',
-                        style: AppTheme.inter(
-                          fontSize: 13,
-                          color: AppTheme.textDark,
-                          height: 1.45,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Icon(Icons.chevron_right_rounded, color: AppTheme.neutral400),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  const _MenuItemData({
+    required this.icon,
+    required this.label,
+    required this.iconBgColor,
+    required this.iconColor,
+    this.badge,
+    this.badgeColor,
+    required this.onTap,
+  });
 }
 
-// ── Kartu komoditas ─────────────────────────────────────────────────────────
-class _CommodityCard extends StatelessWidget {
-  final String name, price, stock, category;
+/// Header action button (help, notification)
+class _HeaderActionButton extends StatelessWidget {
   final IconData icon;
-  final Color tint;
+  final bool showDot;
   final VoidCallback onTap;
 
-  const _CommodityCard({
-    required this.name,
-    required this.price,
-    required this.stock,
-    required this.category,
+  const _HeaderActionButton({
     required this.icon,
-    required this.tint,
+    this.showDot = false,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      label: '$name, harga $price, stok $stock',
-      button: true,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(20),
-          splashColor: tint.withValues(alpha: 0.12),
-          child: Container(
-            width: 166,
-            padding: const EdgeInsets.all(14),
-            decoration: AppTheme.cardDecoration(
-              radius: 20,
-              shadows: AppTheme.softShadow(0.08),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: tint.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(icon, color: tint, size: 22),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        splashColor: Colors.white.withValues(alpha: 0.12),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.12),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.2), width: 0.5),
+          ),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Icon(icon, color: Colors.white, size: 24),
+              if (showDot)
+                Positioned(
+                  right: -2,
+                  top: -2,
+                  child: Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: GoPayColors().brandSecondary,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 1.5),
                     ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            name,
-                            style: AppTheme.poppins(
-                              fontSize: 15,
-                              weight: FontWeight.w700,
-                              color: AppTheme.textDark,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          _CategoryChip(category: category),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  price,
-                  style: tabularNumber(
-                    fontSize: 18,
-                    weight: FontWeight.w800,
-                    color: AppTheme.textDark,
                   ),
                 ),
-                const SizedBox(height: 2),
-                Text(
-                  stock,
-                  style: AppTheme.inter(
-                    fontSize: 11,
-                    color: AppTheme.neutral400,
-                  ),
-                ),
-              ],
-            ),
+            ],
           ),
         ),
       ),
@@ -967,43 +657,160 @@ class _CommodityCard extends StatelessWidget {
   }
 }
 
-class _CategoryChip extends StatelessWidget {
-  final String category;
+/// Large action button in header (Catat Panen, Jual Hasil)
+class _HeaderActionButtonLarge extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final Color color;
+  final Color textColor;
+  final Color? borderColor;
+  final VoidCallback onTap;
 
-  const _CategoryChip({required this.category});
+  const _HeaderActionButtonLarge({
+    required this.label,
+    required this.icon,
+    required this.color,
+    required this.textColor,
+    this.borderColor,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    Color bgColor;
-    Color textColor;
-    switch (category) {
-      case 'Pangan Pokok':
-        bgColor = AppTheme.brandPrimarySoft;
-        textColor = AppTheme.brandPrimary;
-        break;
-      case 'Sayuran':
-        bgColor = AppTheme.brandAccentSoft;
-        textColor = AppTheme.brandAccent;
-        break;
-      default:
-        bgColor = AppTheme.neutral100;
-        textColor = AppTheme.neutral500;
-    }
-
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        category,
-        style: AppTheme.inter(
-          fontSize: 10,
-          weight: FontWeight.w600,
-          color: textColor,
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(16),
+        splashColor: textColor.withValues(alpha: 0.12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(16),
+            border: borderColor != null ? Border.all(color: borderColor!, width: 1) : null,
+            boxShadow: [
+              BoxShadow(
+                color: textColor.withValues(alpha: 0.15),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 20, color: textColor),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  label,
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: textColor,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+}
+
+/// Expense row (tappable to Keuangan)
+class _ExpenseRow extends StatelessWidget {
+  final String amount;
+  final String label;
+  final VoidCallback onTap;
+
+  const _ExpenseRow({
+    required this.amount,
+    required this.label,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        splashColor: Colors.white.withValues(alpha: 0.12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.2), width: 0.5),
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.wallet_outlined, size: 20, color: Colors.white.withValues(alpha: 0.8)),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      amount,
+                      style: GoogleFonts.inter(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        fontFeatures: const [FontFeature.tabularFigures()],
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      label,
+                      style: GoogleFonts.inter(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white.withValues(alpha: 0.7),
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+              Icon(Icons.chevron_right_rounded, color: Colors.white.withValues(alpha: 0.6), size: 22),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Subtle pattern painter for header
+class _HeaderPatternPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.white.withValues(alpha: 0.03)
+      ..style = PaintingStyle.fill;
+
+    const double spacing = 36;
+    const double dotSize = 2;
+
+    for (double y = -spacing; y < size.height + spacing; y += spacing) {
+      for (double x = -spacing; x < size.width + spacing; x += spacing) {
+        final offsetX = (y ~/ spacing) % 2 == 0 ? 0 : spacing / 2;
+        canvas.drawCircle(Offset(x + offsetX, y), dotSize, paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

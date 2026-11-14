@@ -29,8 +29,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   String _routeFor(UserRole role) => switch (role) {
-    UserRole.petani => '/',
     UserRole.konsumen => '/consumer',
+    UserRole.petani => '/',
+    UserRole.peternak => '/',
+    UserRole.nelayan => '/',
+    UserRole.pelakuPangan => '/',
+    UserRole.pengepul => '/',
+    UserRole.olahan => '/',
     UserRole.admin => '/admin',
   };
 
@@ -214,11 +219,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                         child: Text(
-                          'Akun demo: 08123456789 / petani123',
+                          'Akun Demo:\n• Petani: 08123456789 / petani123\n• Konsumen: 08111222333 / konsumen123\n• Admin: admin / admin123',
                           style: AppTheme.inter(
                             fontSize: 12,
                             weight: FontWeight.w500,
                             color: AppTheme.brandPrimaryDark,
+                            height: 1.4,
                           ),
                           textAlign: TextAlign.center,
                         ),

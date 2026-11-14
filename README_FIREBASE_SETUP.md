@@ -1,0 +1,10 @@
+Firebase
+Setup
+Guide
+Step
+1:
+Create
+Firebase
+Project
+at
+console.firebase.google.com

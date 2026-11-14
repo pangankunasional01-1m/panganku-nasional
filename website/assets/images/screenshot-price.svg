@@ -1,0 +1,36 @@
+<svg width="280" height="620" viewBox="0 0 280 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="280" height="620" fill="#FBF7EF"/>
+  <rect width="280" height="160" fill="#2E7D32" rx="0 0 20 20"/>
+  <text x="140" y="50" text-anchor="middle" fill="white" font-family="system-ui" font-size="22" font-weight="700">Harga Komoditas</text>
+  <rect x="20" y="80" width="240" height="50" rx="8" fill="white" fill-opacity="0.16" stroke="white" stroke-opacity="0.2"/>
+  <text x="140" y="112" text-anchor="middle" fill="white" font-family="system-ui" font-size="14" font-weight="600">🔍 Semua  🌱 Pangan Pokok  🥬 Sayuran  🍎 Buah</text>
+  <g>
+    <rect x="20" y="180" width="240" height="100" rx="12" fill="white" stroke="#E2D5C3"/>
+    <text x="140" y="210" text-anchor="middle" fill="#2E7D32" font-size="22">🌶️</text>
+    <text x="140" y=240 text-anchor="middle" fill="#2B2118" font-family="system-ui" font-size="13" font-weight="600">Cabai Merah</text>
+    <text x="140" y=255 text-anchor="middle" fill="#8E7C68" font-family="system-ui" font-size="10">Sayuran</text>
+    <text x="140" y=270 text-anchor="middle" fill="#1B5E20" font-family="system-ui" font-size="16" font-weight="700">Rp 85.000/kg</text>
+    <text x="240" y=230 text-anchor="end" fill="#1B9E56" font-family="system-ui" font-size="11" font-weight="600">▲ +12%</text>
+    
+    <rect x="20" y="180" width="240" height="100" rx="12" fill="white" stroke="#E2D5C3" transform="translate(0 120)"/>
+    <text x="140" y="210" text-anchor="middle" fill="#2E7D32" font-size="22" transform="translate(0 120)">🧅</text>
+    <text x="140" y=240 text-anchor="middle" fill="#2B2118" font-family="system-ui" font-size="13" font-weight="600" transform="translate(0 120)">Bawang Merah</text>
+    <text x="140" y=255 text-anchor="middle" fill="#8E7C68" font-family="system-ui" font-size="10" transform="translate(0 120)">Sayuran</text>
+    <text x="140" y=270 text-anchor="middle" fill="#1B5E20" font-family="system-ui" font-size="16" font-weight="700" transform="translate(0 120)">Rp 28.500/kg</text>
+    <text x="240" y=230 text-anchor="end" fill="#1B9E56" font-family="system-ui" font-size="11" font-weight="600" transform="translate(0 120)">▲ +5%</text>
+    
+    <rect x="20" y="180" width="240" height="100" rx="12" fill="white" stroke="#E2D5C3" transform="translate(0 240)"/>
+    <text x="140" y="210" text-anchor="middle" fill="#2E7D32" font-size="22" transform="translate(0 240)">🌾</text>
+    <text x="140" y=240 text-anchor="middle" fill="#2B2118" font-family="system-ui" font-size="13" font-weight="600" transform="translate(0 240)">Padi</text>
+    <text x="140" y=255 text-anchor="middle" fill="#8E7C68" font-family="system-ui" font-size="10" transform="translate(0 240)">Pangan Pokok</text>
+    <text x="140" y=270 text-anchor="middle" fill="#1B5E20" font-family="system-ui" font-size="16" font-weight="700" transform="translate(0 240)">Rp 6.200/kg</text>
+    <text x="240" y=230 text-anchor="end" fill="#F26B3A" font-family="system-ui" font-size="11" font-weight="600" transform="translate(0 240)">▼ -2%</text>
+    
+    <rect x="20" y="180" width="240" height="100" rx="12" fill="white" stroke="#E2D5C3" transform="translate(0 360)"/>
+    <text x="140" y="210" text-anchor="middle" fill="#2E7D32" font-size="22" transform="translate(0 360)">🍌</text>
+    <text x="140" y=240 text-anchor="middle" fill="#2B2118" font-family="system-ui" font-size="13" font-weight="600" transform="translate(0 360)">Pisang Cavendish</text>
+    <text x="140" y=255 text-anchor="middle" fill="#8E7C68" font-family="system-ui" font-size="10" transform="translate(0 360)">Buah</text>
+    <text x="140" y=270 text-anchor="middle" fill="#1B5E20" font-family="system-ui" font-size="16" font-weight="700" transform="translate(0 360)">Rp 18.000/kg</text>
+    <text x="240" y=230 text-anchor="end" fill="#1B9E56" font-family="system-ui" font-size="11" font-weight="600" transform="translate(0 360)">▲ +3%</text>
+  </g>
+</svg>
